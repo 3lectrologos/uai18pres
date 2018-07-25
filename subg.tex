@@ -70,6 +70,11 @@
 \newcommand{\qsubtitle}[1]{%
 {\color{col2}\textsc{#1}}
 }
+
+\newcommand{\qsource}[1]{%
+{\color{col1}\scriptsize\hfill[#1]}
+}
+
 %-----------------------------------------------------------------------
 
 \title[Discrete Sampling using Semigradient-based Product Mixtures]
@@ -82,6 +87,31 @@
 \setbeamertemplate{background canvas}{}
 \includepdf[pages={1}]{title/title.pdf}
 \setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth]{figures/bg_no_line.png}}
+
+\begin{frame}{Modeling gene alterations}
+\includegraphics[width=3.7in]{figures/oncogene.png}\\
+\qsource{\texttt{cancergenome.nih.gov}}
+\end{frame}
+
+\begin{frame}{Modeling gene alterations}
+\centering
+\includegraphics[width=\textwidth]{figures/grid_genes.pdf}
+\end{frame}
+
+\begin{frame}{Modeling character choices}
+\includegraphics[width=\textwidth]{figures/champions_transparent.png}\\
+\qsource{\texttt{euw.leagueoflegends.com}}
+\end{frame}
+
+\begin{frame}{Modeling character choices}
+\centering
+\includegraphics[height=3in]{figures/champions5v5.pdf}
+\end{frame}
+
+\begin{frame}{Modeling gene alterations}
+\centering
+\includegraphics[width=\textwidth]{figures/grid_hots.pdf}
+\end{frame}
 
 \begin{frame}{When Gibbs fails}
 \centering
