@@ -6,3 +6,5 @@ subg.pdf
 *.out
 *.snm
 *.toc
+*.fls
+*.fdb_latexmk
