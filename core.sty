@@ -1,0 +1,86 @@
+\RequirePackage{array}
+\RequirePackage{booktabs}
+\RequirePackage[skins,breakable]{tcolorbox}
+\RequirePackage{minibox}
+\RequirePackage{mathtools}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=newest}
+\RequirePackage{tikz}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{moresize}
+\RequirePackage{fontspec}
+\RequirePackage{xunicode}
+\RequirePackage{xltxtra}
+
+\setmainfont[Ligatures={Common,TeX}]{Gill Sans MT Std Light}
+\setsansfont[Ligatures={Common,TeX}]{Gill Sans MT Std Light}
+
+\definecolor{bgcolor}{HTML}{999999}
+\definecolor{textcolor}{HTML}{EFEFEE}
+\definecolor{col1}{HTML}{dd6fcc}
+\colorlet{col1light}{col1!50!white}
+\definecolor{col2}{HTML}{80CD32}
+
+% Avoid random transparencies in Adobe Acrobat
+\RequirePackage{everypage}
+\AddEverypageHook{%
+  \makeatletter%
+  \special{pdf: put @thispage <</Group << /S /Transparency /I true /CS /DeviceRGB>> >>}%
+  \makeatother%
+}%
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\todo}[1]{{\scriptsize\color{yellow}\textsc{[Todo]}}}
+
+\newcommand{\qcite}[1]{{\scriptsize\color{col1}[#1]}}
+
+\newcommand{\qbox}[1]{%
+\begin{tcolorbox}[enhanced jigsaw,size=tight,hbox,boxsep=4pt,boxrule=1pt,coltext=black,colframe=col1light,colback=col1,opacityback=0.7,opacityframe=1]
+\strut #1
+\end{tcolorbox}%
+}
+
+\newcommand{\qboxa}[1]{%
+\begin{tcolorbox}[enhanced jigsaw,size=tight,hbox,boxsep=4pt,boxrule=1pt,coltext=textcolor,colframe=col1,opacityback=0,opacityframe=1]
+\strut #1
+\end{tcolorbox}%
+}
+
+\newcommand{\qboxatight}[1]{%
+\begin{tcolorbox}[enhanced jigsaw,size=fbox,hbox,boxsep=4pt,boxrule=1pt,coltext=textcolor,colframe=col1,opacityback=0,opacityframe=1,halign=center,valign=center,square,circular arc]
+#1
+\end{tcolorbox}%
+}
+
+\newcommand{\qboxb}[1]{%
+\begin{tcolorbox}[enhanced jigsaw,size=tight,hbox,boxsep=4pt,boxrule=1pt,coltext=textcolor,colframe=col2,opacityback=0,opacityframe=1]
+\strut #1
+\end{tcolorbox}%
+}
+
+\newcommand{\qtheorem}[2]{%
+\begin{tcolorbox}[enhanced jigsaw,size=tight,boxsep=7pt,boxrule=0.7pt,coltext=textcolor,colframe=col1,colback=col1,opacityback=0,opacityframe=1]
+\begin{minipage}{\textwidth}
+{\color{col1}\strut Theorem #1}\\[0.7em]
+#2
+\end{minipage}
+\end{tcolorbox}%
+}
+
+\newcommand{\qlemma}[1]{%
+\begin{tcolorbox}[enhanced jigsaw,size=tight,boxsep=7pt,boxrule=0.7pt,coltext=textcolor,colframe=col2,colback=col1,opacityback=0,opacityframe=1]
+\begin{minipage}{\textwidth}
+{\color{col2}\strut Lemma}\\[0.7em]
+#1
+\end{minipage}
+\end{tcolorbox}%
+}
+
+\newcommand{\qsubtitle}[1]{%
+{\color{col2}\textsc{#1}}
+}
+
+\newcommand{\qsource}[1]{%
+{\color{col1}\tiny\hfill[#1]}
+}
