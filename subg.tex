@@ -126,6 +126,72 @@
 \includegraphics[width=\textwidth]{figures/grid_hots.pdf}
 \end{frame}
 
+\begin{frame}{Discrete probabilistic models}
+\begin{columns}[t]
+\begin{column}{0.5\textwidth}
+\centering
+Ground set\\[0.5em]
+$V = \{1,\ldots,n\}$
+
+\vspace{1.3em}
+\includegraphics[width=1.5in]{figures/champions_transparent.png}
+\end{column}
+\begin{column}{0.5\textwidth}
+\centering
+Data\\[0.5em]
+$\mathcal D = \{S_i\}_{i=0}^m$, $S_i \subseteq V$
+
+\vspace{0.9em}
+\includegraphics[width=1.4in]{figures/grid_hots.pdf}
+\end{column}
+\end{columns}
+
+\vspace{1.5em}
+
+\begin{center}
+Model {\color{col1}higher-order} interactions\\[0.5em]
+
+\qboxa{
+$p(S; \theta) = \displaystyle\frac{1}{Z(\theta)}\exp \big( F(S; \theta) \big)$
+}
+
+%Scoring function $F: 2^V \to \mathbb{R}$ \includegraphics[width=0.2in]{figures/right_arrows.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}{Discrete probabilistic models}
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\centering
+\includegraphics[width=2in,angle=90,origin=c]{figures/model_higher.pdf}
+\end{column}
+\begin{column}{0.7\textwidth}
+\begin{tikzpicture}[
+box/.style={minimum height=4em}
+]
+  \node[box,text=textcolor] (1) at (0,0) {Learn $\theta$};
+  \uncover<2->{
+  \node[box,text=textcolor,anchor=west] (12) at (0.3,-1.5) {Max. likelihood};
+  }
+  \only<3,4>{
+  \node[box,text=textcolor] (2) at (0,-3) {Compute $\nabla_{\theta}Z(\theta)$};
+  }
+  \only<3->{
+  \draw [-latex, color=textcolor, line width=0.5] (2) to (1);
+  }
+  \uncover<4->{
+  \node[box,text=textcolor,anchor=west] (23) at (0.3,-4.5) {\#P-hard in general};
+  }
+  \uncover<5->{
+  \node[box,text=textcolor] (2) at (0,-3) {{\color{col1}Approximate} \color{textcolor}$\nabla_{\theta}Z(\theta)$};
+  \node[box,text=textcolor] (3) at (0,-6) {Sample from $p(\cdot\,; \theta)$};
+  \draw [-latex, color=textcolor, line width=0.5] (3) to (2);
+  }
+\end{tikzpicture}
+\end{column}
+\end{columns}
+\end{frame}
+
 \begin{frame}{When Gibbs fails}
 \centering
 \only<1>{\includegraphics[width=4in]{figures/bottleneck0.pdf}}%
