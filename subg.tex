@@ -149,4 +149,63 @@ box/.style={minimum height=4em}
 \only<3>{\includegraphics[width=\textwidth]{figures/bottleneck2.pdf}}
 \end{frame}
 
+\begin{frame}{The $\mathrm{M}^3$ chain}
+\only<1>{
+\centering
+$\mathrm{M}^3$ = Mixture of Log-Modulars Metropolis
+}
+
+\only<2->{
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{>{\arraybackslash}p{0.28\textwidth}>{\arraybackslash}p{0.71\textwidth}}
+
+\begin{minipage}[t]{\textwidth}
+\vspace{1.8em}
+\only<7-8>{\color{col1}} \circled{1}\hspace{0.3em} Mixture
+\end{minipage}
+&
+\begin{minipage}[t]{\textwidth}
+\uncover<8->{%
+\vspace{1em}
+$q(S, T) = q(T) = \displaystyle\frac{1}{Z_q} \sum_{i = 1}^{r} w_i\exp\left(m_i(T) \right)$
+\vspace{1em}%
+}
+\end{minipage}\\ \midrule
+
+\begin{minipage}[t]{\textwidth}
+\vspace{1.15em}
+\only<10-11>{\color{col1}} \circled{2}\hspace{0.3em} Log-Modulars
+\end{minipage}
+&
+\begin{minipage}[t]{\textwidth}
+\uncover<11->{
+\vspace{1em}
+$m_i(T) = \displaystyle\sum_{v \in T} m_{iv}$
+\vspace{1em}
+}
+\end{minipage}\\ \midrule
+
+\begin{minipage}[t]{\textwidth}
+\vspace{2.45em}
+\only<3-6>{\color{col1}} \circled{3}\hspace{0.3em} Metropolis
+\end{minipage}
+&
+\begin{minipage}[t]{\textwidth}
+\vspace{1em}
+\begin{itemize}
+\item<4-> Target $\ p(S) \propto \exp(F(S))$
+\vspace{0.15em}
+\item<5-> Proposal $\ q(S, T)$
+\item<6-> Accept with probability%
+\only<6-8>{$\ \min\left\{1, \frac{p(T)q(T, S)}{p(S)q(S, T)}\right\}$}%
+\only<9>{$\ \min\left\{1, \frac{p(T)\color{col1}q(S)}{p(S)\color{col1}q(T)}\right\}$}%
+\only<10->{$\ \min\left\{1, \frac{p(T)q(S)}{p(S)q(T)}\right\}$}
+\end{itemize}
+\vspace{1em}
+\end{minipage}
+
+\end{tabular}
+}
+\end{frame}
+
 \end{document}
