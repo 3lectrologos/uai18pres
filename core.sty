@@ -6,6 +6,7 @@
 \RequirePackage{pgfplots}
 \pgfplotsset{compat=newest}
 \RequirePackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
 \RequirePackage{amsmath,amssymb}
 \RequirePackage{moresize}
 \RequirePackage{fontspec}
@@ -38,7 +39,7 @@
 \newcommand*\circled[1]{\tikz[baseline=-0.3ex,anchor=base]{\node[shape=circle,draw,inner sep=1.5pt] (char) {\scriptsize #1};}}
 
 \newcommand{\qbox}[1]{%
-\begin{tcolorbox}[enhanced jigsaw,size=tight,hbox,boxsep=4pt,boxrule=1pt,coltext=black,colframe=col1light,colback=col1,opacityback=0.7,opacityframe=1]
+\begin{tcolorbox}[enhanced jigsaw,size=tight,hbox,boxsep=4pt,boxrule=1pt,coltext=textcolor,colframe=textcolor,opacityback=0,opacityframe=1]
 \strut #1
 \end{tcolorbox}%
 }
