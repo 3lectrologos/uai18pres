@@ -34,7 +34,7 @@
 
 \newcommand{\todo}[1]{{\scriptsize\color{yellow}\textsc{[Todo]}}}
 
-\newcommand{\qcite}[1]{{\scriptsize\color{col1}[#1]}}
+\newcommand{\qcite}[2][\scriptsize]{{#1\color{col1}[#2]}}
 
 \newcommand*\circled[1]{\tikz[baseline=-0.3ex,anchor=base]{\node[shape=circle,draw,inner sep=1.5pt] (char) {\scriptsize #1};}}
 
@@ -76,6 +76,15 @@
 \begin{minipage}{\textwidth}
 {\color{col2}\strut Lemma}\\[0.7em]
 #1
+\end{minipage}
+\end{tcolorbox}%
+}
+
+\newcommand{\qprop}[2]{%
+\begin{tcolorbox}[enhanced jigsaw,size=tight,boxsep=7pt,boxrule=0.7pt,coltext=textcolor,colframe=col2,colback=col1,opacityback=0,opacityframe=1]
+\begin{minipage}{\textwidth}
+{\color{col2}\strut Proposition #1}\\[0.7em]
+#2
 \end{minipage}
 \end{tcolorbox}%
 }

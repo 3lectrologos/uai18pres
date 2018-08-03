@@ -14,43 +14,52 @@
 \includepdf[pages={1}]{title/title.pdf}
 \setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth]{figures/bg_no_line.png}}
 
+
 \begin{frame}{Modeling gene alterations}
 \includegraphics[width=3.7in]{figures/oncogene.png}\\
 \qsource{\texttt{cancergenome.nih.gov}}
 \end{frame}
 
+
 \begin{frame}{Modeling gene alterations}
 \centering
 \includegraphics[width=\textwidth]{figures/grid_genes.pdf}
 \end{frame}
+
 
 \begin{frame}{Modeling gene alterations}
 \includegraphics[width=\textwidth]{figures/grid_genes_muex.pdf}
 \end{frame}
 
+
 \begin{frame}{Modeling gene alterations}
 \centering
 \includegraphics[width=\textwidth]{figures/grid_genes.pdf}
 \end{frame}
 
+
 \begin{frame}{Modeling gene alterations}
 \includegraphics[width=\textwidth]{figures/grid_genes_cooc.pdf}
 \end{frame}
+
 
 \begin{frame}{Modeling teams}
 \includegraphics[width=\textwidth]{figures/champions_transparent.png}\\
 \qsource{\texttt{euw.leagueoflegends.com}}
 \end{frame}
 
+
 \begin{frame}{Modeling teams}
 \centering
 \includegraphics[height=3in]{figures/champions5v5.pdf}
 \end{frame}
 
+
 \begin{frame}{Modeling teams}
 \centering
 \includegraphics[width=\textwidth]{figures/grid_hots.pdf}
 \end{frame}
+
 
 \begin{frame}{Discrete probabilistic models}
 \vspace{0.7em}
@@ -96,6 +105,7 @@ $p(S; \theta) = \displaystyle\frac{1}{Z(\theta)}\exp \big( F(S; \theta) \big)$
 
 \end{frame}
 
+
 \begin{frame}{Discrete probabilistic models}
 \begin{columns}
 \begin{column}{0.3\textwidth}
@@ -135,6 +145,7 @@ box/.style={minimum height=4em}
 \end{columns}
 \end{frame}
 
+
 \begin{frame}{The Gibbs sampler}
 \centering
 \only<1>{\includegraphics[width=2.5in]{figures/lattice_full.pdf}}%
@@ -142,12 +153,14 @@ box/.style={minimum height=4em}
 \only<3>{\includegraphics[width=2.5in]{figures/lattice_gibbs_2.pdf}}
 \end{frame}
 
+
 \begin{frame}{When Gibbs fails}
 \centering
 \only<1>{\includegraphics[width=\textwidth]{figures/bottleneck0.pdf}}%
 \only<2>{\includegraphics[width=\textwidth]{figures/bottleneck1.pdf}}%
 \only<3>{\includegraphics[width=\textwidth]{figures/bottleneck2.pdf}}
 \end{frame}
+
 
 \begin{frame}{The $\mathrm{M}^3$ chain}
 \only<1>{
@@ -195,7 +208,9 @@ $m_i(T) = \displaystyle\sum_{v \in T} m_{iv}$
 \begin{itemize}
 \item<4-> Target $\ p(S) \propto \exp(F(S))$
 \vspace{0.15em}
-\item<5-> Proposal $\ q(S, T)$
+\item<5-> \only<1-8>{Proposal $\ q(S, T)$}%
+\only<9>{Proposal \color{col1} $\ q(T)$}%
+\only<10->{Proposal $\ q(T)$}
 \item<6-> Accept with probability%
 \only<6-8>{$\ \min\left\{1, \frac{p(T)q(T, S)}{p(S)q(S, T)}\right\}$}%
 \only<9>{$\ \min\left\{1, \frac{p(T)\color{col1}q(S)}{p(S)\color{col1}q(T)}\right\}$}%
@@ -208,6 +223,49 @@ $m_i(T) = \displaystyle\sum_{v \in T} m_{iv}$
 }
 \end{frame}
 
+
+\begin{frame}{The $\mathrm{M}^3$ chain}
+\begin{center}
+Proposal$\ \ \ q(T) = \displaystyle\frac{1}{Z_q} \sum_{i = 1}^{r} w_i\exp\left(m_i(T) \right)$
+\end{center}
+
+\only<1-5>{%
+\vspace{1em}
+\uncover<2->{%
+$\rightarrow\ \ $ Efficient to sample from $q$
+}
+\uncover<3->{%
+\vspace{1em}
+\qprop{1}{Mixture $q$ can approximate any distribution $p$ arbitrarily well.}
+\vspace{-0.7em}
+}
+\uncover<4->{%
+\begin{center}
+{\color{col1}BUT}
+
+\vspace{0.5em}
+May need an exponential (in $n$) number of components $r$
+\end{center}
+}
+
+\uncover<5->{%
+$\rightarrow\ \ $ Combine Gibbs and $\mathrm{M}^3$
+}
+}
+\end{frame}
+
+
+\begin{frame}{The combined chain}
+%$P^{\textsc{Combo}} = \alpha P^{\textsc{Gibbs}} + (1 - \alpha) P^{\mathrm{M}^3}$
+\vspace{0.7em}
+$\rightarrow\ \ $ Gibbs step with probability $\alpha$ \hspace{1em}|\hspace{1em} $\mathrm{M}^3$ step with prob. $1 - \alpha$
+
+\vspace{1.3em}
+\centering
+\includegraphics[width=\textwidth]{figures/decomposition.pdf}
+\end{frame}
+
+
 \begin{frame}{Experiments}
 \vspace{1em}
 \centering
@@ -217,17 +275,20 @@ $m_i(T) = \displaystyle\sum_{v \in T} m_{iv}$
 %\only<4>{\includegraphics[width=\textwidth,trim=0 0 0 0,clip]{figures/exp1_time_line_dots.pdf}}%
 \end{frame}
 
+
 \begin{frame}{Experiments}
 \vspace{1em}
 \centering
 \includegraphics[width=\textwidth,trim=0 0 0 0,clip]{figures/exp2.pdf}
 \end{frame}
 
+
 \begin{frame}{Experiments}
 \vspace{1em}
 \centering
 \includegraphics[width=\textwidth,trim=0 0 0 0,clip]{figures/exp3.pdf}
 \end{frame}
+
 
 \begin{frame}{Conclusion}
 \vspace{1em}
