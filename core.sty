@@ -1,4 +1,6 @@
 \RequirePackage{array}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
 \RequirePackage{booktabs}
 \RequirePackage[skins,breakable]{tcolorbox}
 \RequirePackage{minibox}
@@ -31,6 +33,29 @@
 }%
 
 \DeclareMathOperator*{\argmax}{arg\,max}
+
+% Algorithm-related
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\newcommand*\LNot{\textbf{not}\xspace}
+\newcommand*\LAnd{\textbf{and}\xspace}
+\newcommand*\LET[2]{\STATE #1 $\gets$ #2}
+\newcommand*\Fcall[1]{\textsc{#1}}
+\makeatletter
+\newcommand{\setalglineno}[1]{%
+	\setcounter{ALC@line}{\numexpr#1-1}}
+\makeatother
+\renewcommand{\algorithmiccomment}[1]{// #1}
+\newcommand{\LINEIF}[2]{%
+	\STATE\algorithmicif\ {#1}\ \algorithmicthen\ {#2}%
+}
+\newcommand{\LINEELSE}[1]{%
+	\STATE\algorithmicelse\ {#1}%
+}
+\newcommand{\LINEIFELSE}[3]{%
+	\STATE\algorithmicif\ {#1}\ \algorithmicthen\ {#2}\ \algorithmicelse\ {#3}%
+}
 
 \newcommand{\todo}[1]{{\scriptsize\color{yellow}\textsc{[Todo]}}}
 

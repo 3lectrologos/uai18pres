@@ -44,14 +44,14 @@
 
 
 \begin{frame}{Modeling teams}
-\includegraphics[width=\textwidth]{figures/champions_transparent.png}\\
+\includegraphics[width=\textwidth]{figures/lol_champs.png}\\
 \qsource{\texttt{euw.leagueoflegends.com}}
 \end{frame}
 
 
 \begin{frame}{Modeling teams}
 \centering
-\includegraphics[height=3in]{figures/champions5v5.pdf}
+\includegraphics[height=2.7in]{figures/champions5v5.pdf}
 \end{frame}
 
 
@@ -70,7 +70,7 @@ Ground set\\[0.2em]
 $V = \{1,\ldots,n\}$
 
 \vspace{1em}
-\includegraphics[width=1.5in]{figures/champions_transparent.png}
+\includegraphics[width=1.5in]{figures/lol_champs.png}
 \end{column}
 \begin{column}{0.5\textwidth}
 \centering
@@ -156,12 +156,11 @@ box/.style={minimum height=4em}
 
 
 \begin{frame}{The $\mathrm{M}^3$ chain}
-\only<1>{
-\centering
-$\mathrm{M}^3$ = Mixture of Log-Modulars Metropolis
-}
+\vspace{0.8em}
+$\rightarrow\ \ $$\mathrm{M}^3$ = Mixture of Log-Modulars Metropolis
 
-\only<2->{
+\vspace{-1em}
+\uncover<2->{
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{>{\arraybackslash}p{0.28\textwidth}>{\arraybackslash}p{0.71\textwidth}}
 
@@ -218,10 +217,10 @@ $m_i(T) = \displaystyle\sum_{v \in T} m_{iv}$
 
 
 \begin{frame}{The $\mathrm{M}^3$ chain}
-\begin{center}
+\vspace{0.5em}
 Proposal$\ \ \ q(T) = \displaystyle\frac{1}{Z_q} \sum_{i = 1}^{r} w_i\exp\left(m_i(T) \right)$
-\end{center}
 
+\vspace{1em}
 \only<1-5>{%
 \vspace{1em}
 \uncover<2->{%
@@ -309,7 +308,50 @@ Class of Ising models on the complete graph (Curie-Weiss)
 
 
 \begin{frame}{Constructing the mixture}
+\vspace{0.5em}
+\only<1-6>{Construction}\only<7>{{\color{col2}Randomized} construction}\only<8->{{\color{col1}Iterative} construction} of $\ q(\cdot) \propto \sum_{i = 1}^{r} \exp\left(m_i(\cdot) \right)$
 
+\uncover<2->{%
+\vspace{2em}
+\begin{algorithmic}
+  \REQUIRE Set function $F$, mixture size $r$
+  \vspace{0.5em}
+  \FOR{$i = 1$ \TO $r$}
+  \vspace{0.3em}
+  \LET{$\sigma$}{\only<1-6>{Permutation of $V$}\only<7>{{\color{col2}Random permutation of $V$}}\only<8->{{\color{col1}\textsc{Greedy}$\Big(F(\cdot) - \log\sum_{j = 1}^{i-1} \exp(m_j(\cdot))\Big)$}}}
+  \vspace{0.3em}
+  \LET{$m_i$}{\only<1-2>{Modular function that approximates $F$ at $\sigma$}\only<3-6>{\color{col2}\textsc{SemiGradient}$\left(F, \sigma\right)$}\only<7->{\textsc{SemiGradient}($F$, $\sigma$)}}
+  \vspace{0.3em}
+  \ENDFOR
+  \RETURN $\{m_1, \ldots, m_r\}$
+\end{algorithmic}%
+}
+
+\vspace{2em}
+\begin{itemize}
+\item<4-> Submodularity $\rightarrow$ natural diminishing returns property
+\item<5-> Sub-/supergradients $\rightarrow$ modular lower/upper approx. \qcitea{Iyer et al., '13}
+\item<6-> Construction works for general set functions $F$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Experiments}
+\vspace{1em}
+\centering
+\includegraphics[width=2.3in]{figures/lol_champs.png}
+
+\vspace{1em}
+\begin{itemize}
+\item<2-> $|V| = 48$
+\vspace{0.5em}
+\item<3-> 8.5k teams of 5 characters
+\vspace{0.5em}
+\item<4-> $F$ is a (submodular) facility location diversity model \qcitea{Tschiatschek et al., '16}
+\begin{align*}
+F(S) = \sum_{i \in S} w_i + \sum_{j=1}^L \max_{i \in S}c_{ij}
+\end{align*}
+\end{itemize}
 \end{frame}
 
 
@@ -344,6 +386,8 @@ Class of Ising models on the complete graph (Curie-Weiss)
 \vspace{1em}
 \begin{itemize}
   \item $\mathrm{M}^3$ sampler $\rightarrow$ propose global moves to overcome bottlenecks
+  \vspace{0.5em}
+  \item Combined sampler $\rightarrow$ analysis based on decomposition theorem
   \vspace{0.5em}
   \item Semigradient construction $\rightarrow$ incorporate ideas from optimization
 \end{itemize}
