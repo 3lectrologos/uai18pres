@@ -34,7 +34,8 @@
 
 \newcommand{\todo}[1]{{\scriptsize\color{yellow}\textsc{[Todo]}}}
 
-\newcommand{\qcite}[2][\scriptsize]{{#1\color{col1}[#2]}}
+\newcommand{\qcitea}[2][\scriptsize]{{#1\color{col1}[#2]}}
+\newcommand{\qciteb}[2][\scriptsize]{{#1\color{col2}[#2]}}
 
 \newcommand*\circled[1]{\tikz[baseline=-0.3ex,anchor=base]{\node[shape=circle,draw,inner sep=1.5pt] (char) {\scriptsize #1};}}
 
@@ -63,9 +64,9 @@
 }
 
 \newcommand{\qtheorem}[2]{%
-\begin{tcolorbox}[enhanced jigsaw,size=tight,boxsep=7pt,boxrule=0.7pt,coltext=textcolor,colframe=col1,colback=col1,opacityback=0,opacityframe=1]
+\begin{tcolorbox}[enhanced jigsaw,size=tight,boxsep=7pt,boxrule=0.7pt,coltext=textcolor,colframe=col2,colback=col2,opacityback=0,opacityframe=1]
 \begin{minipage}{\textwidth}
-{\color{col1}\strut Theorem #1}\\[0.7em]
+{\color{col2}\strut Theorem #1}\\[0.7em]
 #2
 \end{minipage}
 \end{tcolorbox}%

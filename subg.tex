@@ -82,7 +82,7 @@ $\mathcal D = \{S_i\}_{i=0}^m$, $S_i \subseteq V$
 \end{column}
 \end{columns}
 
-\vspace{0.6em}
+\vspace{0.9em}
 
 \begin{center}
 Model {\color{col1}higher-order} interactions\\[0.3em]
@@ -266,6 +266,52 @@ $\rightarrow\ \ $ Gibbs step with probability $\alpha$ \hspace{1em}|\hspace{1em}
 \end{frame}
 
 
+\begin{frame}{The combined chain}
+\vspace{0.5em}
+Class of Ising models on the complete graph (Curie-Weiss)
+
+\vspace{1em}
+\begin{columns}[t]
+\begin{column}{0.3\textwidth}
+\centering
+
+\vspace{0.1em}
+\includegraphics[width=1.2in]{figures/bottleneck1.pdf}
+
+\vspace{2.5em}
+\includegraphics[width=0.8in]{figures/projection.pdf}
+
+\vspace{2em}
+\hspace{0.3em}\includegraphics[width=0.9in]{figures/restriction.pdf}
+\end{column}
+
+\begin{column}{0.66\textwidth}
+\vspace{-1em}
+\uncover<2->{%
+\begin{itemize}
+\small
+\item Gibbs $:\ \gamma = \mathcal{O}\left( e^{-cn} \right)$ \qcitea{Levin et al., '08}
+\vspace{0.3em}
+\item $\mathrm{M}^3:$\uncover<5>{$\ \ ?$}
+\item Combo $:$\uncover<5>{$\ \gamma = \Omega\left( \displaystyle\frac{\log n}{n}  \right)$ \qciteb{Theorem 2}}
+\end{itemize}%
+}
+
+\vspace{1.4em}
+\begin{itemize}
+\item<4-> $\mathrm{M}^3:\ \gamma = \Omega(1)$ \qciteb{Lemma 1}
+\end{itemize}
+
+\vspace{3.2em}
+\begin{itemize}
+\item<3-> Gibbs $:\ \gamma = \Theta\left( \displaystyle\frac{\log n}{n} \right)$ \qcitea{Ding et al., '09}
+\end{itemize}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+
 \begin{frame}{Experiments}
 \vspace{1em}
 \centering
@@ -303,7 +349,7 @@ $\rightarrow\ \ $ Gibbs step with probability $\alpha$ \hspace{1em}|\hspace{1em}
 \end{itemize}
 
 \vspace{1em}
-\qboxa{Poster \#75}
+\qboxb{Poster \#75}
 
 \end{frame}
 
