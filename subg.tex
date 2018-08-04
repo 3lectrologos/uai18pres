@@ -85,9 +85,9 @@ $\mathcal D = \{S_i\}_{i=0}^m$, $S_i \subseteq V$
 \vspace{0.9em}
 
 \begin{center}
-Model {\color{col1}higher-order} interactions\\[0.3em]
+Model {\color{col2}higher-order} interactions\\[0.3em]
 
-\qboxa{
+\qboxb{
 $p(S; \theta) = \displaystyle\frac{1}{Z(\theta)}\exp \big( F(S; \theta) \big)$
 }
 
@@ -107,12 +107,7 @@ $p(S; \theta) = \displaystyle\frac{1}{Z(\theta)}\exp \big( F(S; \theta) \big)$
 
 
 \begin{frame}{Discrete probabilistic models}
-\begin{columns}
-\begin{column}{0.3\textwidth}
 \centering
-\includegraphics[width=2in,angle=90,origin=c]{figures/model_higher.pdf}
-\end{column}
-\begin{column}{0.7\textwidth}
 \begin{tikzpicture}[
 box/.style={minimum height=4em}
 ]
@@ -130,19 +125,17 @@ box/.style={minimum height=4em}
   \node[box,text=textcolor,anchor=west] (23) at (0.3,-4.5) {\#P-hard in general};
   }
   \uncover<5->{
-  \node[box, text=textcolor] (2) at (0,-3) {{\color{col1}Approximate} \color{textcolor}$\nabla_{\theta}Z(\theta)$};
+  \node[box, text=textcolor] (2) at (0,-3) {{\color{col2}Approximate} \color{textcolor}$\nabla_{\theta}Z(\theta)$};
   \only<1-5>{
   \node[box, text=textcolor] (3) at (0,-6) {Sample from $p(\cdot\,; \theta)$};
   \draw [-latex, color=textcolor, line width=0.5] (3) to (2);
   }
   \only<6->{
-  \node[box, text=textcolor] (3) at (0,-6) {\qboxa{Sample from $p(\cdot\,; \theta)$}};
+  \node[box, text=textcolor] (3) at (0,-6) {\qboxb{Sample from $p(\cdot\,; \theta)$}};
   \draw [-latex, color=textcolor, line width=0.5] (3) to (2);
   }
   }
 \end{tikzpicture}
-\end{column}
-\end{columns}
 \end{frame}
 
 
@@ -174,7 +167,7 @@ $\mathrm{M}^3$ = Mixture of Log-Modulars Metropolis
 
 \begin{minipage}[t]{\textwidth}
 \vspace{1.8em}
-\only<7-8>{\color{col1}} \circled{1}\hspace{0.3em} Mixture
+\only<7-9>{\color{col2}} \circled{1}\hspace{0.3em} Mixture
 \end{minipage}
 &
 \begin{minipage}[t]{\textwidth}
@@ -187,7 +180,7 @@ $q(S, T) = q(T) = \displaystyle\frac{1}{Z_q} \sum_{i = 1}^{r} w_i\exp\left(m_i(T
 
 \begin{minipage}[t]{\textwidth}
 \vspace{1.15em}
-\only<10-11>{\color{col1}} \circled{2}\hspace{0.3em} Log-Modulars
+\only<10-11>{\color{col2}} \circled{2}\hspace{0.3em} Log-Modulars
 \end{minipage}
 &
 \begin{minipage}[t]{\textwidth}
@@ -200,7 +193,7 @@ $m_i(T) = \displaystyle\sum_{v \in T} m_{iv}$
 
 \begin{minipage}[t]{\textwidth}
 \vspace{2.45em}
-\only<3-6>{\color{col1}} \circled{3}\hspace{0.3em} Metropolis
+\only<3-6>{\color{col2}} \circled{3}\hspace{0.3em} Metropolis
 \end{minipage}
 &
 \begin{minipage}[t]{\textwidth}
@@ -209,11 +202,11 @@ $m_i(T) = \displaystyle\sum_{v \in T} m_{iv}$
 \item<4-> Target $\ p(S) \propto \exp(F(S))$
 \vspace{0.15em}
 \item<5-> \only<1-8>{Proposal $\ q(S, T)$}%
-\only<9>{Proposal \color{col1} $\ q(T)$}%
+\only<9>{Proposal \color{col2} $\ q(T)$}%
 \only<10->{Proposal $\ q(T)$}
 \item<6-> Accept with probability%
 \only<6-8>{$\ \min\left\{1, \frac{p(T)q(T, S)}{p(S)q(S, T)}\right\}$}%
-\only<9>{$\ \min\left\{1, \frac{p(T)\color{col1}q(S)}{p(S)\color{col1}q(T)}\right\}$}%
+\only<9>{$\ \min\left\{1, \frac{p(T)\color{col2}q(S)}{p(S)\color{col2}q(T)}\right\}$}%
 \only<10->{$\ \min\left\{1, \frac{p(T)q(S)}{p(S)q(T)}\right\}$}
 \end{itemize}
 \vspace{1em}
@@ -256,13 +249,16 @@ $\rightarrow\ \ $ Combine Gibbs and $\mathrm{M}^3$
 
 
 \begin{frame}{The combined chain}
-%$P^{\textsc{Combo}} = \alpha P^{\textsc{Gibbs}} + (1 - \alpha) P^{\mathrm{M}^3}$
-\vspace{0.7em}
-$\rightarrow\ \ $ Gibbs step with probability $\alpha$ \hspace{1em}|\hspace{1em} $\mathrm{M}^3$ step with prob. $1 - \alpha$
+\vspace{0.5em}
+Gibbs step with probability $\alpha$ \hspace{1em}|\hspace{1em} $\mathrm{M}^3$ step with prob. $1 - \alpha$
 
-\vspace{1.3em}
+\uncover<2->{%
+\vspace{2em}
 \centering
-\includegraphics[width=\textwidth]{figures/decomposition.pdf}
+\only<1-2>{\includegraphics[width=\textwidth]{figures/decomposition1.pdf}}%
+\only<3>{\includegraphics[width=\textwidth]{figures/decomposition2.pdf}}%
+\only<4>{\includegraphics[width=\textwidth]{figures/decomposition.pdf}}%
+}
 \end{frame}
 
 
@@ -308,6 +304,11 @@ Class of Ising models on the complete graph (Curie-Weiss)
 \end{itemize}
 \end{column}
 \end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Constructing the mixture}
 
 \end{frame}
 
