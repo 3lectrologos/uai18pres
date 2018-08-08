@@ -33,12 +33,6 @@
 
 
 \begin{frame}{Modeling gene alterations}
-\centering
-\includegraphics[width=\textwidth]{figures/grid_genes.pdf}
-\end{frame}
-
-
-\begin{frame}{Modeling gene alterations}
 \includegraphics[width=\textwidth]{figures/grid_genes_cooc.pdf}
 \end{frame}
 
@@ -52,6 +46,7 @@
 
 
 \begin{frame}{Modeling teams in online games}
+\vspace{1em}
 \includegraphics[width=\textwidth]{figures/lol_champs.png}\\
 \qsource{\texttt{euw.leagueoflegends.com}}
 \end{frame}
@@ -73,39 +68,44 @@
 \vspace{0.7em}
 \begin{columns}[t]
 \begin{column}{0.5\textwidth}
+\uncover<1->{%
 \centering
 Ground set\\[0.2em]
 $V = \{1,\ldots,n\}$
 
 \vspace{1em}
-\includegraphics[width=1.5in]{figures/lol_champs.png}
+\includegraphics[width=1.5in]{figures/lol_champs.png}%
+}
 \end{column}
 \begin{column}{0.5\textwidth}
+\uncover<2->{%
 \centering
 Data\\[0.2em]
 $\mathcal D = \{S_i\}_{i=0}^m$, $S_i \subseteq V$
 
 \vspace{0.5em}
-\includegraphics[width=1.4in]{figures/grid_hots.pdf}
+\includegraphics[width=1.4in]{figures/grid_hots.pdf}%
+}
 \end{column}
 \end{columns}
 
 \vspace{1.5em}
 
 \begin{center}
+\uncover<3->{%
 Model {\color{col2}higher-order} interactions\\[0.3em]
 
 \qboxb{
 $p(S; \theta) = \displaystyle\frac{1}{Z(\theta)}\exp \big( F(S; \theta) \big)$
+}%
 }
-
 \vspace{0.6em}
 
 \begin{minipage}{0.49\textwidth}
 \footnotesize
 \begin{itemize}
-\item $F(S) = \textrm{graph-cut}(S)\ \rightarrow\ $ Ising model
-\item $F(S) = \log \left|K_S\right|\ \rightarrow\ $ DPP
+\item<4-> $F(S) = \textrm{graph-cut}(S)\ \rightarrow\ $ Ising model
+\item<5-> $F(S) = \log \left|K_S\right|\ \rightarrow\ $ DPP
 \end{itemize}
 \end{minipage}
 
@@ -174,24 +174,25 @@ $\rightarrow\ \ $$\mathrm{M}^3$ = Mixture of Log-Modulars Metropolis
 
 \begin{minipage}[t]{\textwidth}
 \vspace{1.8em}
-\only<7-9>{\color{col2}} \circled{1}\hspace{0.3em} Mixture
+\only<7-8>{\color{col2}} \circled{1}\hspace{0.3em} Mixture
 \end{minipage}
 &
 \begin{minipage}[t]{\textwidth}
 \uncover<8->{%
 \vspace{1em}
-$q(S, T) = q(T) = \displaystyle\frac{1}{Z_q} \sum_{i = 1}^{r} w_i\exp\left(m_i(T) \right)$
+\only<1-10>{$q(S, T) = \displaystyle\frac{1}{Z_q} \sum_{i = 1}^{r} w_i\exp\left(m_i(T) \right)$}%
+\only<11->{${\color{col2}q(T)} = \displaystyle\frac{1}{Z_q} \sum_{i = 1}^{r} w_i\exp\left(m_i(T) \right)$}
 \vspace{1em}%
 }
 \end{minipage}\\ \midrule
 
 \begin{minipage}[t]{\textwidth}
 \vspace{1.15em}
-\only<10-11>{\color{col2}} \circled{2}\hspace{0.3em} Log-Modulars
+\only<9-10>{\color{col2}} \circled{2}\hspace{0.3em} Log-Modulars
 \end{minipage}
 &
 \begin{minipage}[t]{\textwidth}
-\uncover<11->{
+\uncover<10->{
 \vspace{1em}
 $m_i(T) = \displaystyle\sum_{v \in T} m_{iv}$
 \vspace{1em}
@@ -208,13 +209,11 @@ $m_i(T) = \displaystyle\sum_{v \in T} m_{iv}$
 \begin{itemize}
 \item<4-> Target $\ p(S) \propto \exp(F(S))$
 \vspace{0.15em}
-\item<5-> \only<1-8>{Proposal $\ q(S, T)$}%
-\only<9>{Proposal \color{col2} $\ q(T)$}%
-\only<10->{Proposal $\ q(T)$}
+\item<5-> \only<5-10>{Proposal $\ q(S, T)$}%
+\only<11->{Proposal \color{col2} $\ q(T)$}%
 \item<6-> Accept with probability%
-\only<6-8>{$\ \min\left\{1, \frac{p(T)q(T, S)}{p(S)q(S, T)}\right\}$}%
-\only<9>{$\ \min\left\{1, \frac{p(T)\color{col2}q(S)}{p(S)\color{col2}q(T)}\right\}$}%
-\only<10->{$\ \min\left\{1, \frac{p(T)q(S)}{p(S)q(T)}\right\}$}
+\only<6-10>{$\ \min\left\{1, \frac{p(T)q(T, S)}{p(S)q(S, T)}\right\}$}%
+\only<11->{$\ \min\left\{1, \frac{p(T)\color{col2}q(S)}{p(S)\color{col2}q(T)}\right\}$}%
 \end{itemize}
 \vspace{1em}
 \end{minipage}
@@ -228,14 +227,12 @@ $m_i(T) = \displaystyle\sum_{v \in T} m_{iv}$
 \vspace{0.5em}
 Proposal$\ \ \ q(T) = \displaystyle\frac{1}{Z_q} \sum_{i = 1}^{r} w_i\exp\left(m_i(T) \right)$
 
-\vspace{1em}
-\only<1-5>{%
-\vspace{1em}
+\vspace{2em}
 \uncover<2->{%
-$\rightarrow\ \ $ Efficient to sample from $q$
+$\rightarrow\ \ $ Can sample from $q$ in $\mathcal{O}(n + r)$ time
 }
 \uncover<3->{%
-\vspace{1em}
+\vspace{2em}
 \qprop{1}{Mixture $q$ can approximate any distribution $p$ arbitrarily well.}
 \vspace{-0.7em}
 }
@@ -244,13 +241,8 @@ $\rightarrow\ \ $ Efficient to sample from $q$
 {\color{col1}BUT}
 
 \vspace{0.5em}
-May need an exponential (in $n$) number of components $r$
+{\color{col1}May need an exponential (in $n$) number of components $r$}
 \end{center}
-}
-
-\uncover<5->{%
-$\rightarrow\ \ $ Combine Gibbs and $\mathrm{M}^3$
-}
 }
 \end{frame}
 
@@ -293,21 +285,21 @@ Class of Ising models on the complete graph (Curie-Weiss)
 \uncover<2->{%
 \begin{itemize}
 \small
-\item Gibbs $:\ \gamma = \mathcal{O}\left( e^{-cn} \right)$ \qcitea{Levin et al., '08}
+\item Gibbs $:\ t_{\mathrm{mix}} = \Omega\left( e^{cn} \right)$ \qcitea{Levin et al., '08}
 \vspace{0.3em}
 \item $\mathrm{M}^3:$\uncover<5>{$\ \ ?$}
-\item Combo $:$\uncover<5>{$\ \gamma = \Omega\left( \displaystyle\frac{\log n}{n}  \right)$ \qciteb{Theorem 2}}
+\item Combo $:$\uncover<5>{$\ t_{\mathrm{mix}} = \mathcal{O}\left( \displaystyle\frac{n}{\log n}  \right)$ \qciteb{Theorem 2}}
 \end{itemize}%
 }
 
 \vspace{1.4em}
 \begin{itemize}
-\item<4-> $\mathrm{M}^3:\ \gamma = \Omega(1)$ \qciteb{Lemma 1}
+\item<4-> $\mathrm{M}^3:\ t_{\mathrm{mix}} = \mathcal{O}(1)$ \qciteb{Lemma 1}
 \end{itemize}
 
 \vspace{3.2em}
 \begin{itemize}
-\item<3-> Gibbs $:\ \gamma = \Theta\left( \displaystyle\frac{\log n}{n} \right)$ \qcitea{Ding et al., '09}
+\item<3-> Gibbs $:\ t_{\mathrm{mix}} = \Theta\left( \displaystyle\frac{n}{\log n} \right)$ \qcitea{Ding et al., '09}
 \end{itemize}
 \end{column}
 \end{columns}
@@ -367,8 +359,8 @@ F(S) = \sum_{i \in S} w_i + \sum_{j=1}^L \max_{i \in S}c_{ij}
 \vspace{1em}
 \centering
 \only<1>{\includegraphics[width=\textwidth,trim=0 0 0 0,clip]{figures/exp1.pdf}}%
-\only<2>{\includegraphics[width=\textwidth,trim=0 0 0 0,clip]{figures/exp1_line.pdf}}%
-\only<3>{\includegraphics[width=\textwidth,trim=0 0 0 0,clip]{figures/exp1_line_dots.pdf}}%
+%\only<2>{\includegraphics[width=\textwidth,trim=0 0 0 0,clip]{figures/exp1_line.pdf}}%
+%\only<3>{\includegraphics[width=\textwidth,trim=0 0 0 0,clip]{figures/exp1_line_dots.pdf}}%
 \end{frame}
 
 
@@ -391,17 +383,14 @@ F(S) = \sum_{i \in S} w_i + \sum_{j=1}^L \max_{i \in S}c_{ij}
 \centering
 \includegraphics[width=3.5in]{figures/bottleneck_conclusion.pdf}
 
-\vspace{1em}
+\vspace{1.5em}
 \begin{itemize}
-  \item $\mathrm{M}^3$ sampler $\rightarrow$ propose global moves to overcome bottlenecks
-  \vspace{0.5em}
-  \item Combined sampler $\rightarrow$ analysis based on decomposition theorem
-  \vspace{0.5em}
-  \item Semigradient construction $\rightarrow$ incorporate ideas from optimization
+  \item<1-> $\mathrm{M}^3$ sampler $\rightarrow$ propose global moves to overcome bottlenecks
+  \vspace{1em}
+  \item<2-> Combined sampler $\rightarrow$ analysis based on decomposition theorem
+  \vspace{1em}
+  \item<3-> Semigradient construction $\rightarrow$ incorporate ideas from optimization
 \end{itemize}
-
-\vspace{1em}
-\qboxb{Poster \#75}
 
 \end{frame}
 
